@@ -133,7 +133,7 @@ namespace GT4Twitch
                 File.Delete("garage");
         }
 
-        static void DumpFiles(double percent, int win, int total, int gold, int totalLicenses, int totalScore)
+        static void DumpFiles(double percent, int win, int total, int gold, int totalLicenses, int totalScore, int winMission, int totalMissions, int goldCoffee, int totalCoffeeBrakes)
         {
             if (!Directory.Exists("texts"))
                 Directory.CreateDirectory("texts");
@@ -185,6 +185,40 @@ namespace GT4Twitch
             using (FileStream fs = File.Create(path))
             {
                 string str = gold.ToString() + "/" + totalLicenses.ToString();
+
+                Byte[] info = new UTF8Encoding(true).GetBytes(str);
+                fs.Write(info, 0, info.Length);
+                fs.Flush();
+                fs.Close();
+            }
+
+            path = "texts/mission.txt";
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            using (FileStream fs = File.Create(path))
+            {
+                string str = winMission.ToString() + "/" + totalMissions.ToString();
+
+                Byte[] info = new UTF8Encoding(true).GetBytes(str);
+                fs.Write(info, 0, info.Length);
+                fs.Flush();
+                fs.Close();
+            }
+
+            path = "texts/coffee.txt";
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            using (FileStream fs = File.Create(path))
+            {
+                string str = goldCoffee.ToString() + "/" + totalCoffeeBrakes.ToString();
 
                 Byte[] info = new UTF8Encoding(true).GetBytes(str);
                 fs.Write(info, 0, info.Length);
@@ -262,13 +296,15 @@ namespace GT4Twitch
 
             _eventDb.LoadEventIndices(save.Type, _gt4Database);
             int win = 0;
+            int winMission = 0;
             int gold = 0;
+            int goldCoffee = 0;
             int total = 0;
             int totaltotal = 0;
             int totalScore = 0;
-            // TODO: license counter counts up to 119 instead of 60...
-            //int totalLicenses = 0;
-            int totalLicenses = 60;
+            int totalLicenses = 0;
+            int totalMissions = 0;
+            int totalCoffeeBrakes = 0;
 
             foreach (EventCategory category in _eventDb.Categories)
             {
@@ -277,10 +313,10 @@ namespace GT4Twitch
                     RaceRecordUnit unit = save.GameData.Profile.RaceRecords.Records[@event.DbIndex];
                     var evMode = @event.GameMode;
 
-                    if ((evMode == "RACE_MODE_SINGLE") || (evMode == "RACE_MODE_MISSION"))
+                    if (evMode == "RACE_MODE_SINGLE")
                     {
                         EventType type = unit.GetEventType();
-                        if (((type == EventType.Event) || (type == EventType.Mission)) && (type != EventType.License))
+                        if (((type == EventType.Event) || (type != EventType.Mission)) && (type != EventType.License))
                         {
                             Result _resP = unit.GetPermanentResult();
                             Result _resE = unit.GetCurrentResult();
@@ -295,20 +331,54 @@ namespace GT4Twitch
                     if (evMode == "RACE_MODE_LICENSE")
                     {
                         EventType type = unit.GetEventType();
-                        if (type == EventType.License)
-                        {
-                            Result _resP = unit.GetPermanentResult();
-                            if (_resP == Result.gold)
-                                gold++;
-                            totalScore += unit.ASpecScore;
-                        }
 
-                        //totalLicenses++;
+                        if (category.Name.Contains("Mission"))
+                        {
+                            if ((type == EventType.Mission) && (type != EventType.License))
+                            {
+                                Result _resP = unit.GetPermanentResult();
+                                Result _resE = unit.GetCurrentResult();
+                                Result _resM = unit.GetUnknownLicenseOrMissionResult();
+
+                                if ((_resP == Result._1) || (_resE == Result._1) || (_resM == Result._1))
+                                {
+                                    winMission++;
+                                    win++;
+                                }
+                                totalScore += unit.ASpecScore;
+                            }
+                            totalMissions++;
+                            total++;
+                        }
+                        else
+                        {
+                            if (category.Name.Contains("Coffee"))
+                            {
+                                if ((type == EventType.License) && (type != EventType.Mission))
+                                {
+                                    Result _resP = unit.GetPermanentResult();
+                                    if (_resP == Result.gold)
+                                        goldCoffee++;
+                                    totalScore += unit.ASpecScore;
+                                }
+                                totalCoffeeBrakes++;
+                            }
+                            else
+                            {
+                                if ((type == EventType.License) && (type != EventType.Mission))
+                                {
+                                    Result _resP = unit.GetPermanentResult();
+                                    if (_resP == Result.gold)
+                                        gold++;
+                                    totalScore += unit.ASpecScore;
+                                }
+                                totalLicenses++;
+                            }
+                        }
                     }
                     totaltotal++;
                 }
             }
-
 
             if ((win > 0) && (total > 0))
                 percentGameCompletionInt = win * 1000 / total;
@@ -322,11 +392,11 @@ namespace GT4Twitch
 
             Console.WriteLine("GT4Twitch: Percent complete: " + percentGameCompletion.ToString("0.0", customCulture));
             //Console.WriteLine("GT4Twitch: AllEv: " + totaltotal + "\nGT4Twitch: EvMis: " + total + "\nGT4Twitch: Wins: " + win);
-            string OutString = string.Format(titleFormatString, percentGameCompletion.ToString("0.0", customCulture), win.ToString(), total.ToString(), gold.ToString(), totalScore.ToString(), totalLicenses.ToString());
+            string OutString = string.Format(titleFormatString, percentGameCompletion.ToString("0.0", customCulture), win.ToString(), total.ToString(), gold.ToString(), totalScore.ToString(), totalLicenses.ToString(), winMission.ToString(), totalMissions.ToString(), goldCoffee.ToString(), totalCoffeeBrakes.ToString());
             string limitedOutString = new string(OutString.Take(140).ToArray());
             Console.WriteLine("GT4Twitch: Title: " + limitedOutString);
             UpdateTwitchThing(OutString);
-            DumpFiles(percentGameCompletion, win, total, gold, totalLicenses, totalScore);
+            DumpFiles(percentGameCompletion, win, total, gold, totalLicenses, totalScore, winMission, totalMissions, goldCoffee, totalCoffeeBrakes);
         }
 
         public static void Run(IntPtr handle, string McPath, string TitleFormat, string inAuthToken, string inChannelId, string inClientId, bool bIsAuthorized)
