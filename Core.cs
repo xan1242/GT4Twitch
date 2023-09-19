@@ -133,7 +133,7 @@ namespace GT4Twitch
                 File.Delete("garage");
         }
 
-        static void DumpFiles(double percent, int win, int total, int gold, int totalScore)
+        static void DumpFiles(double percent, int win, int total, int gold, int totalLicenses, int totalScore)
         {
             if (!Directory.Exists("texts"))
                 Directory.CreateDirectory("texts");
@@ -184,7 +184,7 @@ namespace GT4Twitch
 
             using (FileStream fs = File.Create(path))
             {
-                string str = gold.ToString();
+                string str = gold.ToString() + "/" + totalLicenses.ToString();
 
                 Byte[] info = new UTF8Encoding(true).GetBytes(str);
                 fs.Write(info, 0, info.Length);
@@ -266,6 +266,9 @@ namespace GT4Twitch
             int total = 0;
             int totaltotal = 0;
             int totalScore = 0;
+            // TODO: license counter counts up to 119 instead of 60...
+            //int totalLicenses = 0;
+            int totalLicenses = 60;
 
             foreach (EventCategory category in _eventDb.Categories)
             {
@@ -299,6 +302,8 @@ namespace GT4Twitch
                                 gold++;
                             totalScore += unit.ASpecScore;
                         }
+
+                        //totalLicenses++;
                     }
                     totaltotal++;
                 }
@@ -317,11 +322,11 @@ namespace GT4Twitch
 
             Console.WriteLine("GT4Twitch: Percent complete: " + percentGameCompletion.ToString("0.0", customCulture));
             //Console.WriteLine("GT4Twitch: AllEv: " + totaltotal + "\nGT4Twitch: EvMis: " + total + "\nGT4Twitch: Wins: " + win);
-            string OutString = string.Format(titleFormatString, percentGameCompletion.ToString("0.0", customCulture), win.ToString(), total.ToString(), gold.ToString(), totalScore.ToString());
+            string OutString = string.Format(titleFormatString, percentGameCompletion.ToString("0.0", customCulture), win.ToString(), total.ToString(), gold.ToString(), totalScore.ToString(), totalLicenses.ToString());
             string limitedOutString = new string(OutString.Take(140).ToArray());
             Console.WriteLine("GT4Twitch: Title: " + limitedOutString);
             UpdateTwitchThing(OutString);
-            DumpFiles(percentGameCompletion, win, total, gold, totalScore);
+            DumpFiles(percentGameCompletion, win, total, gold, totalLicenses, totalScore);
         }
 
         public static void Run(IntPtr handle, string McPath, string TitleFormat, string inAuthToken, string inChannelId, string inClientId, bool bIsAuthorized)

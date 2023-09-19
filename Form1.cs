@@ -18,7 +18,7 @@ namespace GT4Twitch
         public Form1()
         {
             InitializeComponent();
-            lbFmtDesc.Text = "Formatters:\n{0} = percentage, {1} = events won, {2} = total events, {3} = gold licenses, {4} = ASpec Pts.";
+            lbFmtDesc.Text = "Formatters:\n{0} = percentage, {1} = events won, {2} = total events, {3} = gold licenses, {4} = ASpec Pts.\n{5} = total licenses";
 
             //apiKeyForm = new FormApiKey();
 
