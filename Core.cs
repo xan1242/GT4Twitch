@@ -26,6 +26,7 @@ namespace GT4Twitch
         static GT4Database _gt4Database;
 
         public static bool bIsOnline = false;
+        public static bool bIsSpec2 = false;
 
         static long USCheckAddr = 0x006BA380;
         static long OnlineCheckAddr = 0x721DD0;
@@ -288,7 +289,10 @@ namespace GT4Twitch
                     break;
                 case GT4SaveType.GT4_US:
                 case GT4SaveType.GT4O_US:
-                    _gt4Database.CreateConnection("Resources/Databases/GT4_PREMIUM_US2560.sqlite");
+                    if (bIsSpec2)
+                        _gt4Database.CreateConnection("Resources/Databases/GT4_PREMIUM_US2560-Spec2.sqlite");
+                    else
+                        _gt4Database.CreateConnection("Resources/Databases/GT4_PREMIUM_US2560.sqlite");
                     break;
                 default:
                     break;
@@ -445,7 +449,10 @@ namespace GT4Twitch
 
             _gt4Database = new();
             _eventDb = new();
-            _eventDb.Load("Resources/EventList.txt");
+            if (bIsSpec2)
+                _eventDb.Load("Resources/EventList-Spec2.txt");
+            else
+                _eventDb.Load("Resources/EventList.txt");
 
             while (true)
             {

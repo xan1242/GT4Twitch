@@ -45,14 +45,24 @@ namespace GT4Twitch
                 if (!string.IsNullOrEmpty(channelId))
                     bGotChannelId = true;
             }
-            if (ConfigurationManager.AppSettings.AllKeys.Contains("bIsOnline"))
-            {
-                string strIsOnline = ConfigurationManager.AppSettings["bIsOnline"];
-                bool bIsOnline = bool.Parse(strIsOnline);
 
-                Core.bIsOnline = bIsOnline;
-                rbGT4USOnline.Checked = bIsOnline;
-                rbGT4US.Checked = !bIsOnline;
+            if (ConfigurationManager.AppSettings.AllKeys.Contains("SelGame"))
+            {
+                string strSelGame = ConfigurationManager.AppSettings["SelGame"];
+                int SelGame = int.Parse(strSelGame);
+
+                switch (SelGame)
+                {
+                    case 2:
+                        rbSpec2.Checked = true;
+                        break;
+                    case 1:
+                        rbGT4USOnline.Checked = true;
+                        break;
+                    default:
+                        rbGT4US.Checked = true;
+                        break;
+                }
             }
 
             UpdateLoginStatusLabel();
@@ -82,7 +92,15 @@ namespace GT4Twitch
             config.AppSettings.Settings["McPath"].Value = tbMcPath.Text;
             config.AppSettings.Settings["TitleFormat"].Value = tbTitleFormat.Text;
 
-            config.AppSettings.Settings["bIsOnline"].Value = rbGT4USOnline.Checked.ToString();
+            if (rbSpec2.Checked)
+                config.AppSettings.Settings["SelGame"].Value = "2";
+            else if (rbGT4USOnline.Checked)
+                config.AppSettings.Settings["SelGame"].Value = "1";
+            else
+                config.AppSettings.Settings["SelGame"].Value = "0";
+
+            //config.AppSettings.Settings["bIsOnline"].Value = rbGT4USOnline.Checked.ToString();
+            //config.AppSettings.Settings["bIsSpec2"].Value = rbSpec2.Checked.ToString();
 
             config.AppSettings.Settings["authToken"].Value = authToken;
             config.AppSettings.Settings["channelId"].Value = channelId;
@@ -237,6 +255,12 @@ namespace GT4Twitch
             //    ApiKey = apiKeyForm.ApiKey;
             //else
             //    ApiKey = "";
+        }
+
+        private void rbSpec2_CheckedChanged(object sender, EventArgs e)
+        {
+            Core.bIsOnline = rbSpec2.Checked;
+            Core.bIsSpec2 = rbSpec2.Checked;
         }
     }
 }

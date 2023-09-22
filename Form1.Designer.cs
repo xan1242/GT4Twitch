@@ -45,6 +45,7 @@
             ofdMcPath = new OpenFileDialog();
             lbFmtDesc = new Label();
             lbLoginStatus = new Label();
+            rbSpec2 = new RadioButton();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -104,11 +105,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(rbSpec2);
             groupBox1.Controls.Add(rbGT4USOnline);
             groupBox1.Controls.Add(rbGT4US);
             groupBox1.Location = new Point(12, 93);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(176, 79);
+            groupBox1.Size = new Size(176, 108);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Game Version";
@@ -156,7 +158,7 @@
             // 
             // btLaunch
             // 
-            btLaunch.Location = new Point(589, 149);
+            btLaunch.Location = new Point(589, 178);
             btLaunch.Name = "btLaunch";
             btLaunch.Size = new Size(75, 23);
             btLaunch.TabIndex = 9;
@@ -166,7 +168,7 @@
             // 
             // btAPIKey
             // 
-            btAPIKey.Location = new Point(194, 149);
+            btAPIKey.Location = new Point(194, 178);
             btAPIKey.Name = "btAPIKey";
             btAPIKey.Size = new Size(117, 23);
             btAPIKey.TabIndex = 10;
@@ -196,17 +198,29 @@
             // lbLoginStatus
             // 
             lbLoginStatus.AutoSize = true;
-            lbLoginStatus.Location = new Point(317, 153);
+            lbLoginStatus.Location = new Point(317, 182);
             lbLoginStatus.Name = "lbLoginStatus";
             lbLoginStatus.Size = new Size(178, 15);
             lbLoginStatus.TabIndex = 12;
             lbLoginStatus.Text = "Not logged in. Please log in first.";
             // 
+            // rbSpec2
+            // 
+            rbSpec2.AutoSize = true;
+            rbSpec2.Location = new Point(6, 72);
+            rbSpec2.Name = "rbSpec2";
+            rbSpec2.Size = new Size(82, 19);
+            rbSpec2.TabIndex = 8;
+            rbSpec2.TabStop = true;
+            rbSpec2.Text = "GT4 Spec II";
+            rbSpec2.UseVisualStyleBackColor = true;
+            rbSpec2.CheckedChanged += rbSpec2_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(674, 185);
+            ClientSize = new Size(674, 213);
             Controls.Add(lbLoginStatus);
             Controls.Add(lbFmtDesc);
             Controls.Add(btAPIKey);
@@ -249,5 +263,6 @@
         private OpenFileDialog ofdMcPath;
         private Label lbFmtDesc;
         private Label lbLoginStatus;
+        private RadioButton rbSpec2;
     }
 }
