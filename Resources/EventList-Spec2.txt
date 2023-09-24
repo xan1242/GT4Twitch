@@ -15,7 +15,7 @@ Missions 30-34|l0m0030|l0m0031|l0m0032|l0m0033|l0m0034
 Missions 35-40|l0m0035|l0m0036|l0m0037|l0m0038|l0m0039|l0m0040
 
 // Beginner Hall
-Sunday Cup|am_sunday_0001|am_sunday_0002|am_sunday_0003|am_sunday_0004|am_sunday_0005|
+Sunday Cup|am_sunday_0001|am_sunday_0002|am_sunday_0003|
 FF Challenge|am_ff_0001|am_ff_0002|am_ff_0003|am_ff_0004|am_ff_0005|
 FR Challenge|am_fr_0001|am_fr_0002|am_fr_0003|am_fr_0004|am_fr_0005|
 4WD Challenge|am_4wd_0001|am_4wd_0002|am_4wd_0003|am_4wd_0004|am_4wd_0005|
@@ -39,11 +39,13 @@ Gran Turismo World Championship|pr_gtworld_1000|pr_gtworld_1001|pr_gtworld_1002|
 // Extreme Hall
 Gran Turismo All Stars Championship|ex_gtallstar_1000|ex_gtallstar_1001|ex_gtallstar_1002|ex_gtallstar_1003|ex_gtallstar_1004|ex_gtallstar_1005|ex_gtallstar_1006|ex_gtallstar_1007|ex_gtallstar_1008|ex_gtallstar_1009|ex_gtallstar_1010|
 Dream Car Championship|ex_dream_1000|ex_dream_1001|ex_dream_1002|ex_dream_1003|ex_dream_1004|ex_dream_1005|ex_dream_1006|ex_dream_1007|ex_dream_1008|ex_dream_1009|ex_dream_1010|
-Polyphony Digital Cup Championship|ex_polyphony_0800|ex_polyphony_0801|ex_polyphony_0802|ex_polyphony_0803|ex_polyphony_0804|ex_polyphony_0805|ex_polyphony_0806|ex_polyphony_0807|ex_polyphony_0808
+Polyphony Digital Cup Championship|ex_polyphony_0800|ex_polyphony_0801|ex_polyphony_0802|ex_polyphony_0803|ex_polyphony_0804|ex_polyphony_0805|ex_polyphony_0806|ex_polyphony_0807|ex_polyphony_0808|
 Like The Wind|ex_wind_0001
 Formula GT World Championship|ex_formula_1500|ex_formula_1501|ex_formula_1502|ex_formula_1503|ex_formula_1504|ex_formula_1505|ex_formula_1506|ex_formula_1507|ex_formula_1508|ex_formula_1509|ex_formula_1510|ex_formula_1511|ex_formula_1512|ex_formula_1513|ex_formula_1514|ex_formula_1515
 Real Circuit Tours|ex_real_circuit_0001|ex_real_circuit_0002|ex_real_circuit_0003|ex_real_circuit_0004|ex_real_circuit_0005|ex_real_circuit_0006|ex_real_circuit_0007|ex_real_circuit_0008
 Premium Sports Lounge|ex_premium_0001|ex_premium_0002|ex_premium_0003|ex_premium_0004|ex_premium_0005
+// Roadgoing|ex_roadgoing_0001|ex_roadgoing_0002|ex_roadgoing_0003|ex_roadgoing_0004|ex_roadgoing_0005
+
 
 // Endurance Hall
 Grand Valley 300 km|en_grandvalley300_0001
@@ -144,21 +146,21 @@ BMW - 1 Series Trophy|de_bmw1_0001|de_bmw1_0002|de_bmw1_0003
 BMW - Club "M"|de_bmw_m_0500|de_bmw_m_0501|de_bmw_m_0502|de_bmw_m_0503|de_bmw_m_0504|de_bmw_m_0505
 
 // Chevrolet
-Chevrolet - Corvette Festival|us_chev_corvette_0001|us_chev_corvette_0002|us_chev_corvette_0003|us_chev_corvette_0004|us_chev_corvette_0005
+Chevrolet - Corvette Festival|us_chev_corvette_0001|us_chev_corvette_0002|us_chev_corvette_0003|
 Chevrolet - Camaro Meeting|us_chev_camaro_0001|us_chev_camaro_0002|us_chev_camaro_0003
 
 // Chrysler
-Chrysler - Crossfire Trophy|us_chry_crossfire_0001|us_chry_crossfire_0002|us_chry_crossfire_0003
+Chrysler - Crossfire Trophy|us_chry_crossfire_0001|
 
 // Citroen
-Citroen - 2 HP - 2CV Classics|fr_citroen_2cv_0001
+Citroen - 2 HP - 2CV Classics|fr_citroen_2cv_0001|
 
 // Daihatsu
 Daihatsu - Copen Race|jp_daihatsu_copen_0001|jp_daihatsu_copen_0002|jp_daihatsu_copen_0003
 Daihatsu - Midget II Race|jp_daihatsu_midget2_0001
 
 // Dodge
-Dodge - Snakebite Festival|us_dodge_viper_0001|us_dodge_viper_0002|us_dodge_viper_0003
+Snakebite Festival|us_dodge_viper_0001|us_dodge_viper_0002|us_dodge_viper_0003
 
 // Honda
 Honda - Type R Meeting|jp_honda_typer_0001|jp_honda_typer_0002|jp_honda_typer_0003|jp_honda_typer_0004|jp_honda_typer_0005
@@ -177,7 +179,9 @@ Lotus Classics|uk_lotus_classic_0500|uk_lotus_classic_0501|uk_lotus_classic_0502
 // Mazda
 Mazda - Club "RE"|jp_mazda_rotary_0001|jp_mazda_rotary_0002|jp_mazda_rotary_0003|jp_mazda_rotary_0004|jp_mazda_rotary_0005
 Mazda - NR-A Roadster Cup|jp_mazda_roadster_0500|jp_mazda_roadster_0501|jp_mazda_roadster_0502|jp_mazda_roadster_0503|jp_mazda_roadster_0504|jp_mazda_roadster_0505
-Mazda - NR-A RX-8 Cup|jp_mazda_rx8_0500|jp_mazda_rx8_0501|jp_mazda_rx8_0502|jp_mazda_rx8_0503|jp_mazda_rx8_0504|jp_mazda_rx8_0505
+Mazda - NR-A RX-8 Cup|jp_mazda_rx8_0500|jp_mazda_rx8_0501|jp_mazda_rx8_0502|jp_mazda_rx8_0503|
+// Mazda - NR-A MX-5NC|jp_mazda_mx5nc_0001|jp_mazda_mx5nc_0002|jp_mazda_mx5nc_0003|
+
 
 // Mercedes
 Mercedes - Legends of the Silver Arrow|de_mercedes_arrow_0001|de_mercedes_arrow_0002|de_mercedes_arrow_0003
@@ -219,10 +223,11 @@ Subaru - Stars of Pleiades|jp_subaru_4wd_0500|jp_subaru_4wd_0501|jp_subaru_4wd_0
 // Suzuki
 Suzuki K-Car Cup|jp_suzuki_k_0001|jp_suzuki_k_0002|jp_suzuki_k_0003
 Suzuki Concepts|jp_suzuki_concept_0001|jp_suzuki_concept_0002|jp_suzuki_concept_0003
+// Suzuki Escudo|jp_suzuki_escudo_0000
 
 // Toyota
-Toyota Altezza Race|jp_toyota_altezza_0001|jp_toyota_altezza_0002|jp_toyota_altezza_0003|jp_toyota_altezza_0004|jp_toyota_altezza_0005
-Toyota Vitz|jp_toyota_altezza_0001|jp_toyota_altezza_0002|jp_toyota_altezza_0003|jp_toyota_altezza_0004|jp_toyota_altezza_0005
+Toyota Altezza Race|jp_toyota_altezza_0001|jp_toyota_altezza_0002|jp_toyota_altezza_0003|
+Toyota Vitz|jp_toyota_vitz_0001|jp_toyota_vitz_0002|
 
 // Triumph
 Triumph - Spitfire Cup|uk_triumph_spitfire_0001|uk_triumph_spitfire_0002|uk_triumph_spitfire_0003|uk_triumph_spitfire_0004|uk_triumph_spitfire_0005
