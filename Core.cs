@@ -384,8 +384,8 @@ namespace GT4Twitch
                 }
             }
 
-            if (bIsSpec2)
-                total -= 11;
+            //if (bIsSpec2)
+            //    total -= 9;
 
             if ((win > 0) && (total > 0))
                 percentGameCompletionInt = win * 1000 / total;
